@@ -13,7 +13,7 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
+    const play = playFor(perf);
 
     const thisAmount = amountFor(perf, play);
     // 포인트 적립
@@ -52,6 +52,10 @@ function statement(invoice, plays) {
         throw new Error(`unknown type ${play.type}`);
     }
     return result;
+  }
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID];
   }
 }
 
