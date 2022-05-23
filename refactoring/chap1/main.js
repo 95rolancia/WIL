@@ -13,7 +13,6 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    const thisAmount = amountFor(perf);
     // 포인트 적립
     volumeCredits += Math.max(perf.audience - 30, 0);
     // 희극 관객 5명마다 추가 포인트 제공
@@ -22,8 +21,8 @@ function statement(invoice, plays) {
     }
 
     // 청구 내역 출력
-    result += `${playFor(perf).name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
-    totalAmount += thisAmount;
+    result += `${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${perf.audience}석)\n`;
+    totalAmount += amountFor(perf);
   }
 
   result += `총액: ${format(totalAmount / 100)}\n`;
