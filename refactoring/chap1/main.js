@@ -1,5 +1,4 @@
-const invoices = require('./invoices.json');
-const plays = require('./plays.json');
+import { invoices, plays } from './data.js';
 
 function statement(invoice, plays) {
   let totalAmount = 0;
