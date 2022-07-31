@@ -1,6 +1,4 @@
-import { invoices, plays } from './data.js';
-
-function statement(invoice, plays) {
+export function statement(invoice, plays) {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `청구 내역 (고객명 : ${invoice.customer})\n`;
@@ -54,7 +52,3 @@ function statement(invoice, plays) {
     return plays[aPerformance.playID];
   }
 }
-
-invoices.forEach((invoice) => {
-  console.log(statement(invoice, plays));
-});
