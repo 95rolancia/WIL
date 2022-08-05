@@ -8,6 +8,7 @@ export function statement(invoice, plays) {
     const result = Object.assign({}, aPerformance);
     result.play = playFor(result);
     result.amount = amountFor(result);
+    result.volumeCredits = volumeCreditsFor(result);
     return result;
   }
 
@@ -35,6 +36,17 @@ export function statement(invoice, plays) {
         throw new Error(`unknown type ${aPerformance.play.type}`);
     }
     return result;
+  }
+
+  function volumeCreditsFor(perf) {
+    let reuslt = 0;
+    // 포인트 적립
+    reuslt += Math.max(perf.audience - 30, 0);
+    // 희극 관객 5명마다 추가 포인트 제공
+    if ("comedy" === perf.play.type) {
+      reuslt += Math.floor(perf.audience / 5);
+    }
+    return reuslt;
   }
 }
 
@@ -68,19 +80,8 @@ export function renderPlainText(data, plays) {
   function totalVolumeCredits() {
     let result = 0;
     for (let perf of data.performances) {
-      result += volumeCreditsFor(perf);
+      result += perf.volumeCredits;
     }
     return result;
-  }
-
-  function volumeCreditsFor(perf) {
-    let reuslt = 0;
-    // 포인트 적립
-    reuslt += Math.max(perf.audience - 30, 0);
-    // 희극 관객 5명마다 추가 포인트 제공
-    if ("comedy" === perf.play.type) {
-      reuslt += Math.floor(perf.audience / 5);
-    }
-    return reuslt;
   }
 }
