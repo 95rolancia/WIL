@@ -39,6 +39,10 @@ class TragedyCalculator extends PerformanceCalculator {
     }
     return result;
   }
+
+  get volumeCredits() {
+    return Math.max(this.performance.audience - 30, 0);
+  }
 }
 
 class ComedyCalculator extends PerformanceCalculator {
