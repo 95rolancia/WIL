@@ -42,7 +42,7 @@ export default function createStatementData(invoice, plays) {
     );
     const result = Object.assign({}, aPerformance);
     result.play = calculator.play;
-    result.amount = amountFor(result);
+    result.amount = calculator.amount;
     result.volumeCredits = volumeCreditsFor(result);
     return result;
   }
@@ -50,12 +50,7 @@ export default function createStatementData(invoice, plays) {
   function playFor(aPerformance) {
     return plays[aPerformance.playID];
   }
-
-  function amountFor(aPerformance) {
-    return new PerformanceCalculator(aPerformance, playFor(aPerformance))
-      .amount;
-  }
-
+  
   function volumeCreditsFor(perf) {
     let reuslt = 0;
     // 포인트 적립
