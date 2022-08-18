@@ -14,7 +14,7 @@ export class Province {
   }
 
   addProducer(arg) {
-    this.producers.push(arg);
+    this.#producers.push(arg);
     this.#totalProduction += arg.production;
   }
 
@@ -31,7 +31,7 @@ export class Province {
   }
 
   get satisfiedDemand() {
-    return Math.min(this.#demand, this.#totalProduction);
+    return Math.min(this.#demand, this.totalProduction);
   }
 
   get demandCost() {
